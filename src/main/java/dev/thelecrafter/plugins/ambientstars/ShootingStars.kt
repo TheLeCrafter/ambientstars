@@ -1,9 +1,6 @@
 package dev.thelecrafter.plugins.ambientstars
 
-import org.bukkit.Bukkit
-import org.bukkit.Location
-import org.bukkit.Material
-import org.bukkit.Particle
+import org.bukkit.*
 import org.bukkit.scheduler.BukkitRunnable
 import org.bukkit.scheduler.BukkitTask
 import javax.annotation.Nonnull
@@ -17,11 +14,13 @@ object ShootingStars {
         task = object : BukkitRunnable() {
             override fun run() {
                 for (player in Bukkit.getOnlinePlayers()) {
-                    if (player.location.world.time in 13000..23000) {
-                        val location: Location = player.location.clone()
-                        location.set(location.x + Random.nextDouble(26.0) - 13.0, location.y + Random.nextDouble(25.0, 35.0), location.z + Random.nextDouble(26.0) - 13.0)
-                        if (location.block.type == Material.AIR) {
-                            shootStar(location)
+                    if (player.location.world.environment == World.Environment.NORMAL) {
+                        if (player.location.world.time in 13000..23000) {
+                            val location: Location = player.location.clone()
+                            location.set(location.x + Random.nextDouble(26.0) - 13.0, location.y + Random.nextDouble(25.0, 35.0), location.z + Random.nextDouble(26.0) - 13.0)
+                            if (location.block.type == Material.AIR) {
+                                shootStar(location)
+                            }
                         }
                     }
                 }
