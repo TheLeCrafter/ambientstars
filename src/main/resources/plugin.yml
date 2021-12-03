@@ -1,0 +1,5 @@
+name: AmbientStars
+version: '${version}'
+main: dev.thelecrafter.plugins.ambientstars.AmbientStarsPlugin
+api-version: 1.17
+authors: [ TheLeCrafter ]
