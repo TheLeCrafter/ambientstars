@@ -12,6 +12,7 @@ import org.bukkit.plugin.Plugin
 import org.bukkit.plugin.java.JavaPlugin
 import org.bukkit.scheduler.BukkitRunnable
 import org.bukkit.scheduler.BukkitTask
+import java.io.File
 import java.util.logging.Level
 import java.util.logging.Logger
 
@@ -54,8 +55,9 @@ class AmbientStarsPlugin : JavaPlugin() {
             registerCommand("reloadstars", ReloadCommand(), ReloadCommand())
             if (!getInstance.config.contains("config-version") || !getInstance.config.isInt("config-version") || getInstance.config.getInt("config-version") != getDefaultConfig.getInt("config-version")) {
                 logger.log(Level.WARNING, "Invalid config version! Regenerating...")
-                getInstance.config.load(getTextResource("config.yml")!!)
-                getInstance.saveConfig()
+                val configFile = File(getInstance.dataFolder, "config.yml")
+                configFile.delete()
+                getInstance.saveDefaultConfig()
             }
             for (key in getDefaultConfig.getKeys(false)) {
                 if (!getInstance.config.contains(key)) {
