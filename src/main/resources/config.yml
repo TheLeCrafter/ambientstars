@@ -1,0 +1,14 @@
+# DO NOT CHANGE THIS VALUE! INTERNAL USAGE
+config-version: 1
+
+# How many seconds are between shooting stars. Only integers allowed. Default: 45
+time-per-shooting-star: 45
+
+# Only spawn shooting stars when the time is between 13000 and 23000. Only booleans allowed. Default: true
+only-night: true
+
+# Only spawn shooting stars in overworld typed dimensions. Only booleans allowed. Default: true
+only-overworld: true
+
+# Automatically disable when the tps drops to <16. Only booleans allowed. Default: true
+auto-disable-on-lag: true
