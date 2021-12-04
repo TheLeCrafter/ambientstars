@@ -1,5 +1,18 @@
 name: AmbientStars
 version: '${version}'
 main: dev.thelecrafter.plugins.ambientstars.AmbientStarsPlugin
-api-version: 1.17
+api-version: 1.13
 authors: [ TheLeCrafter ]
+commands:
+  reloadstars:
+    description: "Reload the configuration file."
+    permission: ambientstars.command.reload
+permissions:
+  ambientstars.*:
+    children:
+      ambientstars.command.*: true
+    default: false
+  ambientstars.command.*:
+    children:
+      ambientstars.command.reload: true
+    default: false

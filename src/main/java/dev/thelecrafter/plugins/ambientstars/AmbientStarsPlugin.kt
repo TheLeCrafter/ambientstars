@@ -1,13 +1,17 @@
 package dev.thelecrafter.plugins.ambientstars
 
+import dev.thelecrafter.plugins.ambientstars.commands.ReloadCommand
 import dev.thelecrafter.plugins.ambientstars.utils.EventCollector
 import io.papermc.lib.PaperLib
 import org.bukkit.Bukkit
+import org.bukkit.command.CommandExecutor
+import org.bukkit.command.TabCompleter
 import org.bukkit.configuration.file.FileConfiguration
 import org.bukkit.configuration.file.YamlConfiguration
 import org.bukkit.plugin.Plugin
 import org.bukkit.plugin.java.JavaPlugin
 import org.bukkit.scheduler.BukkitRunnable
+import org.bukkit.scheduler.BukkitTask
 import java.util.logging.Level
 import java.util.logging.Logger
 
@@ -16,6 +20,23 @@ class AmbientStarsPlugin : JavaPlugin() {
         lateinit var getInstance: Plugin
         lateinit var getLogger: Logger
         lateinit var getDefaultConfig: FileConfiguration
+        var task: BukkitTask? = null
+
+        fun disableOnLag() {
+            task = object : BukkitRunnable() {
+                override fun run() {
+                    if (getInstance.server.tps.last() <= 16) {
+                        if (!ShootingStars.task.isCancelled) {
+                            ShootingStars.task.cancel()
+                        }
+                    } else {
+                        if (ShootingStars.task.isCancelled) {
+                            ShootingStars.init()
+                        }
+                    }
+                }
+            }.runTaskTimer(getInstance, 0, 60 * 20)
+        }
     }
 
     override fun onEnable() {
@@ -30,6 +51,7 @@ class AmbientStarsPlugin : JavaPlugin() {
         } else {
             EventCollector.addAllEvents()
             ShootingStars.init()
+            registerCommand("reloadstars", ReloadCommand(), ReloadCommand())
             if (!getInstance.config.contains("config-version") || !getInstance.config.isInt("config-version") || getInstance.config.getInt("config-version") != getDefaultConfig.getInt("config-version")) {
                 logger.log(Level.WARNING, "Invalid config version! Regenerating...")
                 getInstance.config.load(getTextResource("config.yml")!!)
@@ -47,20 +69,9 @@ class AmbientStarsPlugin : JavaPlugin() {
         }
     }
 
-    private fun disableOnLag() {
-        object : BukkitRunnable() {
-            override fun run() {
-                if (server.tps.last() <= 16) {
-                    if (!ShootingStars.task.isCancelled) {
-                        ShootingStars.task.cancel()
-                    }
-                } else {
-                    if (ShootingStars.task.isCancelled) {
-                        ShootingStars.init()
-                    }
-                }
-            }
-        }.runTaskTimer(getInstance, 0, 60 * 20)
+    private fun registerCommand(name: String, executor: CommandExecutor, tabCompleter: TabCompleter) {
+        getCommand(name)!!.setExecutor(executor)
+        getCommand(name)!!.tabCompleter = tabCompleter
     }
 
     override fun onDisable() {
