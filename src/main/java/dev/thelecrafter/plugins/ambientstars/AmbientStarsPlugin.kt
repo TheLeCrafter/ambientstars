@@ -25,13 +25,13 @@ class AmbientStarsPlugin : JavaPlugin() {
         getInstance.saveDefaultConfig()
         getDefaultConfig = YamlConfiguration.loadConfiguration(getTextResource("config.yml")!!)
         if (!PaperLib.isPaper()) {
-            logger.log(Level.WARNING, "[AmbientStars] This plugin will not work if you don't use Paper! Disabling...")
+            logger.log(Level.WARNING, "This plugin will not work if you don't use Paper! Disabling...")
             Bukkit.getPluginManager().disablePlugin(getInstance)
         } else {
             EventCollector.addAllEvents()
             ShootingStars.init()
             if (!getInstance.config.contains("config-version") || !getInstance.config.isInt("config-version") || getInstance.config.getInt("config-version") != getDefaultConfig.getInt("config-version")) {
-                logger.log(Level.WARNING, "[AmbientStars] Invalid config version! Regenerating...")
+                logger.log(Level.WARNING, "Invalid config version! Regenerating...")
                 getInstance.config.load(getTextResource("config.yml")!!)
                 getInstance.saveConfig()
             }
@@ -64,6 +64,6 @@ class AmbientStarsPlugin : JavaPlugin() {
     }
 
     override fun onDisable() {
-        logger.log(Level.FINE, "[AmbientStars] Shutting down internal galaxy")
+        logger.log(Level.FINE, "Shutting down internal galaxy")
     }
 }
