@@ -2,6 +2,7 @@ package dev.thelecrafter.plugins.ambientstars
 
 import dev.thelecrafter.plugins.ambientstars.commands.ReloadCommand
 import dev.thelecrafter.plugins.ambientstars.utils.EventCollector
+import dev.thelecrafter.plugins.ambientstars.utils.UpdateChecker
 import io.papermc.lib.PaperLib
 import org.bukkit.Bukkit
 import org.bukkit.command.CommandExecutor
@@ -43,6 +44,7 @@ class AmbientStarsPlugin : JavaPlugin() {
     override fun onEnable() {
         getInstance = this
         getLogger = logger
+        UpdateChecker.checkForUpdates()
         PaperLib.suggestPaper(getInstance, Level.WARNING)
         getInstance.saveDefaultConfig()
         getDefaultConfig = YamlConfiguration.loadConfiguration(getTextResource("config.yml")!!)

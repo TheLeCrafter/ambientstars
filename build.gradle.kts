@@ -7,7 +7,7 @@ plugins {
 }
 
 group = "dev.thelecrafter.plugins.ambientstars"
-version = "1.0.1"
+version = "1.0.2"
 val versionType: String = "stable"
 
 repositories {
@@ -25,6 +25,7 @@ dependencies {
     implementation("io.papermc:paperlib:1.0.7")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.6.0")
     implementation("io.github.classgraph:classgraph:4.8.137")
+    implementation("org.kohsuke:github-api:1.301")
 }
 
 tasks.shadowJar {
@@ -32,6 +33,7 @@ tasks.shadowJar {
     relocate("org.jetbrains", "$group.org.jetbrains")
     relocate("org.reflections", "$group.org.reflections")
     relocate("io.papermc.lib", "$group.io.papermc.lib")
+    relocate("org.kohsuke", "$group.org.kohsuke")
     archiveFileName.set("${project.name}-$versionType.jar")
 }
 
