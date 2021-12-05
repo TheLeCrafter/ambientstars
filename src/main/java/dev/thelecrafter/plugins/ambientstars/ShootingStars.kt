@@ -1,3 +1,5 @@
+@file:Suppress("DuplicatedCode")
+
 package dev.thelecrafter.plugins.ambientstars
 
 import com.destroystokyo.paper.ParticleBuilder
@@ -51,9 +53,14 @@ object ShootingStars {
             builder.receivers(player)
             builder.spawn()
         }
+        if (AmbientStarsPlugin.getInstance.config.getBoolean("shooting-star-showers", AmbientStarsPlugin.getDefaultConfig.getBoolean("shooting-star-showers"))) {
+            if (Random.nextInt(1, 100) <= AmbientStarsPlugin.getInstance.config.getInt("shooting-star-shower-chance", AmbientStarsPlugin.getDefaultConfig.getInt("shooting-star-shower-chance"))) {
+                recursiveShootingStarShower(location, player, AmbientStarsPlugin.getInstance.config.getInt("shooting-star-shower-count", AmbientStarsPlugin.getDefaultConfig.getInt("shooting-star-shower-count")))
+            }
+        }
     }
 
-    fun getShootingStarParticleBuilderBase(location: Location, deltaX: Double, deltaY: Double, deltaZ: Double): ParticleBuilder {
+    private fun getShootingStarParticleBuilderBase(location: Location, deltaX: Double, deltaY: Double, deltaZ: Double): ParticleBuilder {
         val builder = ParticleBuilder(Particle.FIREWORKS_SPARK)
         builder.location(location)
         builder.count(0)
@@ -61,6 +68,32 @@ object ShootingStars {
         builder.extra(Random.nextDouble(0.6))
         builder.force(true)
         return builder
+    }
+
+    private fun recursiveShootingStarShower(location: Location, player: Player, remaining: Int) {
+        val deltaX: Double = Random.nextDouble(8.0) - 4.0
+        val deltaY: Double = Random.nextDouble(2.0)
+        val deltaZ: Double = Random.nextDouble(8.0) - 4.0
+        if (AmbientStarsPlugin.getInstance.config.getBoolean("show-to-all-players", AmbientStarsPlugin.getDefaultConfig.getBoolean("show-to-all-players"))) {
+            var radius: Int = AmbientStarsPlugin.getInstance.config.getInt("show-to-all-players-radius", AmbientStarsPlugin.getDefaultConfig.getInt("show-to-all-players-radius"))
+            if (radius <= 0) {
+                radius = AmbientStarsPlugin.getDefaultConfig.getInt("show-to-all-players-radius")
+            }
+            val builder: ParticleBuilder = getShootingStarParticleBuilderBase(location, deltaX, deltaY, deltaZ)
+            builder.receivers(radius)
+            builder.spawn()
+        } else {
+            val builder: ParticleBuilder = getShootingStarParticleBuilderBase(location, deltaX, deltaY, deltaZ)
+            builder.receivers(player)
+            builder.spawn()
+        }
+        if (remaining - 1 > 0) {
+            val location: Location = player.location.clone()
+            location.add(Random.nextDouble(26.0) - 13.0, Random.nextDouble(25.0, 35.0), Random.nextDouble(26.0) - 13.0)
+            Bukkit.getScheduler().scheduleSyncDelayedTask(AmbientStarsPlugin.getInstance, {
+                recursiveShootingStarShower(location, player, remaining - 1)
+            }, 10)
+        }
     }
 
 }

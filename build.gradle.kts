@@ -7,7 +7,7 @@ plugins {
 }
 
 group = "dev.thelecrafter.plugins.ambientstars"
-version = "1.0.2"
+version = "1.0.3"
 val versionType: String = "stable"
 
 repositories {

@@ -18,6 +18,7 @@ class UpdateChecker : Listener {
 
     companion object {
         private var upToDate: Boolean = true
+        private var latestVersion: String = "[undefined]"
 
         fun checkForUpdates() {
             val version: String = "v" + AmbientStarsPlugin.getInstance.description.version
@@ -26,6 +27,7 @@ class UpdateChecker : Listener {
             val latestRelease: GHRelease = repository.latestRelease
             if (!latestRelease.isDraft && !latestRelease.isPrerelease) {
                 if (version != latestRelease.tagName) {
+                    latestVersion = latestRelease.tagName
                     upToDate = false
                     AmbientStarsPlugin.getLogger.log(Level.WARNING, "The plugin is not up to date! Download the latest release at https://github.com/TheLeCrafter/ambientstars/releases")
                 }
@@ -41,9 +43,9 @@ class UpdateChecker : Listener {
     fun sendUpdateMessageOnOPJoin(event: PlayerJoinEvent) {
         if (event.player.isOp || event.player.hasPermission("*")) {
             if (!getUpToDate()) {
-                event.player.sendMessage(Component.text("[AmbientStars] The plugin is not up to date! Download the latest release ").color(NamedTextColor.YELLOW).append(Component.text("here").decorate(TextDecoration.UNDERLINED).color(NamedTextColor.BLUE).clickEvent(
-                    ClickEvent.clickEvent(ClickEvent.Action.OPEN_URL, "https://github.com/TheLeCrafter/ambientstars/releases")).hoverEvent(HoverEvent.showText(
-                    Component.text("Opens https://github.com/TheLeCrafter/ambientstars/releases").color(NamedTextColor.GRAY)))))
+                event.player.sendMessage(Component.text("[AmbientStars] The plugin is not up to date! You are using version ${AmbientStarsPlugin.getInstance.description.version}. Download the latest release ($latestVersion) ").color(NamedTextColor.YELLOW).append(Component.text("here").decorate(TextDecoration.UNDERLINED).color(NamedTextColor.BLUE).clickEvent(
+                    ClickEvent.clickEvent(ClickEvent.Action.OPEN_URL, "https://github.com/TheLeCrafter/ambientstars/releases/tag/$latestVersion")).hoverEvent(HoverEvent.showText(
+                    Component.text("Opens https://github.com/TheLeCrafter/ambientstars/releases/tag/$latestVersion").color(NamedTextColor.GRAY))).append(Component.text(".").color(NamedTextColor.YELLOW).decoration(TextDecoration.UNDERLINED, false))))
             }
         }
     }

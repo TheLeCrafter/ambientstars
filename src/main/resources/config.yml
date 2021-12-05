@@ -1,5 +1,5 @@
 # DO NOT CHANGE THIS VALUE! INTERNAL USAGE
-config-version: 2
+config-version: 3
 
 # How many seconds are between shooting stars. Only integers allowed. Must be greater than 0. Default: 45
 time-per-shooting-star: 45
@@ -18,3 +18,10 @@ auto-disable-on-lag: true
 show-to-all-players: false
 # The radius of players the shooting star will be shown. Only integers allowed. Must be greater than 0. Default: 50
 show-to-all-players-radius: 50
+
+# Enable showers of shooting stars. Only booleans allowed. Default: true
+shooting-star-showers: true
+# Adjust how many shooting stars are spawned in a shower. Only integers allowed. Must be greater than 1. Default: 6
+shooting-star-shower-count: 6
+# Adjust how high the chance for shooting star showers is in percent. Only integers allowed. Must be between 1 and 100. Default: 5
+shooting-star-shower-chance: 5
