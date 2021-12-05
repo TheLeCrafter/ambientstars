@@ -44,8 +44,8 @@ class UpdateChecker : Listener {
         if (event.player.isOp || event.player.hasPermission("*")) {
             if (!getUpToDate()) {
                 event.player.sendMessage(Component.text("[AmbientStars] The plugin is not up to date! You are using version ${AmbientStarsPlugin.getInstance.description.version}. Download the latest release ($latestVersion) ").color(NamedTextColor.YELLOW).append(Component.text("here").decorate(TextDecoration.UNDERLINED).color(NamedTextColor.BLUE).clickEvent(
-                    ClickEvent.clickEvent(ClickEvent.Action.OPEN_URL, "https://github.com/TheLeCrafter/ambientstars/releases")).hoverEvent(HoverEvent.showText(
-                    Component.text("Opens https://github.com/TheLeCrafter/ambientstars/releases").color(NamedTextColor.GRAY))).append(Component.text(".").color(NamedTextColor.YELLOW).decoration(TextDecoration.UNDERLINED, false))))
+                    ClickEvent.clickEvent(ClickEvent.Action.OPEN_URL, "https://github.com/TheLeCrafter/ambientstars/releases/tag/$latestVersion")).hoverEvent(HoverEvent.showText(
+                    Component.text("Opens https://github.com/TheLeCrafter/ambientstars/releases/tag/$latestVersion").color(NamedTextColor.GRAY))).append(Component.text(".").color(NamedTextColor.YELLOW).decoration(TextDecoration.UNDERLINED, false))))
             }
         }
     }
