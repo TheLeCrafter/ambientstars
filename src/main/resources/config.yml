@@ -1,7 +1,7 @@
 # DO NOT CHANGE THIS VALUE! INTERNAL USAGE
-config-version: 1
+config-version: 2
 
-# How many seconds are between shooting stars. Only integers allowed. Default: 45
+# How many seconds are between shooting stars. Only integers allowed. Must be greater than 0. Default: 45
 time-per-shooting-star: 45
 
 # Only spawn shooting stars when the time is between 13000 and 23000. Only booleans allowed. Default: true
@@ -12,3 +12,9 @@ only-overworld: true
 
 # Automatically disable when the tps drops to <16. Only booleans allowed. Default: true
 auto-disable-on-lag: true
+
+# Show shooting stars to every player and not only to the nearest. Only booleans allowed. Default: false
+# Warning! If another player is between 25 and 35 blocks above the player the shooting star could fly through them.
+show-to-all-players: false
+# The radius of players the shooting star will be shown. Only integers allowed. Must be greater than 0. Default: 50
+show-to-all-players-radius: 50

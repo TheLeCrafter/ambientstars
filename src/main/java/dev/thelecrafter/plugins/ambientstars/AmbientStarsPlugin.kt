@@ -55,9 +55,16 @@ class AmbientStarsPlugin : JavaPlugin() {
             registerCommand("reloadstars", ReloadCommand(), ReloadCommand())
             if (!getInstance.config.contains("config-version") || !getInstance.config.isInt("config-version") || getInstance.config.getInt("config-version") != getDefaultConfig.getInt("config-version")) {
                 logger.log(Level.WARNING, "Invalid config version! Regenerating...")
+                logger.log(Level.WARNING, "You can find your old configuration in the outdated_config.yml in the plugins data directory.")
+                val values: MutableMap<String, Any> = mutableMapOf()
+                for (key in config.getKeys(false)) {
+                    values[key] = config.get(key)!!
+                }
                 val configFile = File(getInstance.dataFolder, "config.yml")
+                configFile.copyTo(File(getInstance.dataFolder, "outdated_config.yml"), true)
                 configFile.delete()
                 getInstance.saveDefaultConfig()
+                getInstance.reloadConfig()
             }
             for (key in getDefaultConfig.getKeys(false)) {
                 if (!getInstance.config.contains(key)) {
