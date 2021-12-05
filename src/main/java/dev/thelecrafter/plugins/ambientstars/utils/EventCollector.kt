@@ -10,7 +10,7 @@ object EventCollector {
 
     fun addAllEvents() {
         try {
-            val result: ScanResult = ClassGraph().enableClassInfo().acceptPackages("dev.thelecrafter.kotlin.plugins.rpg.rpgmanager").scan()
+            val result: ScanResult = ClassGraph().enableClassInfo().acceptPackages("dev.thelecrafter.plugins.ambientstars").scan()
             val classes: MutableList<Class<out Listener>> = (result.getClassesImplementing(Listener::class.java).loadClasses() as MutableList<Class<out Listener>>?)!!
             for (clazz in classes) {
                 Bukkit.getPluginManager().registerEvents(clazz.getDeclaredConstructor().newInstance(), AmbientStarsPlugin.getInstance)
