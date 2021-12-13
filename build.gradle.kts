@@ -24,7 +24,7 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-reflect:1.6.0")
     implementation("io.papermc:paperlib:1.0.7")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.6.0")
-    implementation("io.github.classgraph:classgraph:4.8.137")
+    implementation("io.github.classgraph:classgraph:4.8.138")
     implementation("org.kohsuke:github-api:1.301")
 }
 
