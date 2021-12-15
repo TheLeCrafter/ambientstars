@@ -2,8 +2,8 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     java
-    id("com.github.johnrengelman.shadow") version "7.1.0"
-    kotlin("jvm") version "1.6.0"
+    id("com.github.johnrengelman.shadow") version "7.1.1"
+    kotlin("jvm") version "1.6.10"
 }
 
 group = "dev.thelecrafter.plugins.ambientstars"
@@ -19,12 +19,12 @@ repositories {
 }
 
 dependencies {
-    compileOnly("io.papermc.paper:paper-api:1.18-R0.1-SNAPSHOT")
+    compileOnly("io.papermc.paper:paper-api:1.18.1-R0.1-SNAPSHOT")
     compileOnly("com.mojang:authlib:1.5.25")
-    implementation("org.jetbrains.kotlin:kotlin-reflect:1.6.0")
+    implementation("org.jetbrains.kotlin:kotlin-reflect:1.6.10")
     implementation("io.papermc:paperlib:1.0.7")
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.6.0")
-    implementation("io.github.classgraph:classgraph:4.8.137")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.6.10")
+    implementation("io.github.classgraph:classgraph:4.8.138")
     implementation("org.kohsuke:github-api:1.301")
 }
 

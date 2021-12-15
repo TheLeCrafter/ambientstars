@@ -10,7 +10,7 @@ The versions listed below are currently supported with bug fixes and new feature
 
 | Plugin Version | Supported          |
 | ------- | ------------------ |
-| 1.0.x   | :white_check_mark: |
+| 1.x   | :white_check_mark: |
 
 | Minecraft Version | Supported |
 | ----------------- | --------- |
