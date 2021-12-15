@@ -26,5 +26,7 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
         cache: gradle
+    - name: Grant gradle permission
+      run: chmod=+x gradlew
     - name: Build with Gradle
       run: ./gradlew build --no-daemon
