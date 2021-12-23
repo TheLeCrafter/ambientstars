@@ -86,6 +86,6 @@ class AmbientStarsPlugin : JavaPlugin() {
     }
 
     override fun onDisable() {
-        logger.log(Level.FINE, "Shutting down internal galaxy")
+        logger.log(Level.ALL, "Shutting down internal galaxy")
     }
 }

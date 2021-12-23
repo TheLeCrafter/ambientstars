@@ -7,8 +7,7 @@ plugins {
 }
 
 group = "dev.thelecrafter.plugins.ambientstars"
-version = "1.0.3"
-val versionType: String = "stable"
+version = "1.1.0"
 
 repositories {
     mavenCentral()
@@ -34,7 +33,7 @@ tasks.shadowJar {
     relocate("org.reflections", "$group.org.reflections")
     relocate("io.papermc.lib", "$group.io.papermc.lib")
     relocate("org.kohsuke", "$group.org.kohsuke")
-    archiveFileName.set("${project.name}-$versionType.jar")
+    archiveFileName.set("${project.name}-${project.version}.jar")
 }
 
 tasks.processResources {

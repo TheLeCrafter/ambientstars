@@ -27,7 +27,9 @@ object ShootingStars {
                             val location: Location = player.location.clone()
                             location.add(Random.nextDouble(26.0) - 13.0, Random.nextDouble(25.0, 35.0), Random.nextDouble(26.0) - 13.0)
                             if (location.block.type == Material.AIR) {
-                                shootStar(location, player)
+                                if (location.world.getHighestBlockAt(location).location.y > location.y) {
+                                    shootStar(location, player)
+                                }
                             }
                         }
                     }
