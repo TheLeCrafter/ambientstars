@@ -1,7 +1,6 @@
 package dev.thelecrafter.plugins.ambientstars
 
 import dev.thelecrafter.plugins.ambientstars.commands.ReloadCommand
-import dev.thelecrafter.plugins.ambientstars.utils.EventCollector
 import dev.thelecrafter.plugins.ambientstars.utils.UpdateChecker
 import io.papermc.lib.PaperLib
 import org.bukkit.Bukkit
@@ -52,7 +51,7 @@ class AmbientStarsPlugin : JavaPlugin() {
             logger.log(Level.WARNING, "This plugin will not work if you don't use Paper! Disabling...")
             Bukkit.getPluginManager().disablePlugin(getInstance)
         } else {
-            EventCollector.addAllEvents()
+            Bukkit.getPluginManager().registerEvents(UpdateChecker(), getInstance)
             ShootingStars.init()
             registerCommand("reloadstars", ReloadCommand(), ReloadCommand())
             if (!getInstance.config.contains("config-version") || !getInstance.config.isInt("config-version") || getInstance.config.getInt("config-version") != getDefaultConfig.getInt("config-version")) {

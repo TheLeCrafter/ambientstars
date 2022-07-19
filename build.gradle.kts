@@ -2,6 +2,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     java
+    id("xyz.jpenilla.run-paper") version "1.0.6"
     id("com.github.johnrengelman.shadow") version "7.1.2"
     kotlin("jvm") version "1.7.10"
 }
@@ -11,7 +12,6 @@ version = "1.1.0"
 
 repositories {
     mavenCentral()
-    maven("https://libraries.minecraft.net")
     maven("https://papermc.io/repo/repository/maven-public/")
     maven("https://oss.sonatype.org/content/repositories/snapshots")
     maven("https://oss.sonatype.org/content/repositories/central")
@@ -19,12 +19,11 @@ repositories {
 
 dependencies {
     compileOnly("io.papermc.paper:paper-api:1.19-R0.1-SNAPSHOT")
-    compileOnly("com.mojang:authlib:1.5.25")
-    implementation("org.jetbrains.kotlin:kotlin-reflect:1.7.10")
     implementation("io.papermc:paperlib:1.0.7")
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.7.10")
-    implementation("io.github.classgraph:classgraph:4.8.149")
-    implementation("org.kohsuke:github-api:1.307")
+    implementation("org.jetbrains.kotlin:kotlin-reflect:1.7.0")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.7.0")
+    implementation("io.github.classgraph:classgraph:4.8.147")
+    implementation("org.kohsuke:github-api:1.306")
 }
 
 tasks.shadowJar {
@@ -60,6 +59,10 @@ tasks.build {
 
 tasks.jar {
     enabled = false
+}
+
+tasks.runServer {
+    minecraftVersion("1.19")
 }
 
 java {
