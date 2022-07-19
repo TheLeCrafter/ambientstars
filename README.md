@@ -14,8 +14,8 @@ The versions listed below are currently supported with bug fixes and new feature
 
 | Minecraft Version | Supported |
 | ----------------- | --------- |
-| 1.19.x            | ✅ |
-| 1.18.x            | ✅ (Default) |
+| 1.19.x            | ✅ (Default) |
+| 1.18.x            | ✅ |
 | 1.17.x            | ✅ |
 | < 1.17            | :x: |
 
