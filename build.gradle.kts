@@ -21,7 +21,7 @@ dependencies {
     compileOnly("io.papermc.paper:paper-api:1.19-R0.1-SNAPSHOT")
     implementation("io.papermc:paperlib:1.0.7")
     implementation("org.jetbrains.kotlin:kotlin-reflect:1.7.0")
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.7.0")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.7.10")
     implementation("io.github.classgraph:classgraph:4.8.147")
     implementation("org.kohsuke:github-api:1.306")
 }
