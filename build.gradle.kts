@@ -23,7 +23,7 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-reflect:1.7.0")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.7.0")
     implementation("io.github.classgraph:classgraph:4.8.147")
-    implementation("org.kohsuke:github-api:1.306")
+    implementation("org.kohsuke:github-api:1.307")
 }
 
 tasks.shadowJar {
