@@ -22,7 +22,7 @@ dependencies {
     implementation("io.papermc:paperlib:1.0.7")
     implementation("org.jetbrains.kotlin:kotlin-reflect:1.7.0")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.7.0")
-    implementation("io.github.classgraph:classgraph:4.8.147")
+    implementation("io.github.classgraph:classgraph:4.8.149")
     implementation("org.kohsuke:github-api:1.306")
 }
 
