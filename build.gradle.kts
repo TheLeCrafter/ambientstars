@@ -20,7 +20,7 @@ repositories {
 dependencies {
     compileOnly("io.papermc.paper:paper-api:1.19.1-R0.1-SNAPSHOT")
     implementation("io.papermc:paperlib:1.0.7")
-    implementation("org.kohsuke:github-api:1.307")
+    implementation("org.kohsuke:github-api:1.308")
 }
 
 tasks.shadowJar {
