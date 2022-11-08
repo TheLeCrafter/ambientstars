@@ -4,7 +4,7 @@ plugins {
     java
     id("xyz.jpenilla.run-paper") version "1.0.6"
     id("com.github.johnrengelman.shadow") version "7.1.2"
-    kotlin("jvm") version "1.7.20"
+    kotlin("jvm") version "1.7.21"
 }
 
 group = "dev.thelecrafter.plugins.ambientstars"
