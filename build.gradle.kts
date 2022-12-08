@@ -8,7 +8,7 @@ plugins {
 }
 
 group = "dev.thelecrafter.plugins.ambientstars"
-version = "1.1.1"
+version = "1.1.0-1.19"
 
 repositories {
     mavenCentral()
